@@ -3,59 +3,69 @@
     <h1 class="display-4">To-Do App</h1>
     <p class="lead">Just another to-do app.</p>
 </div>
-<div class="jumbotron">
-    <div class="row">
-        <div class="col-md-12">
-            <table BORDER=1 WIDTH="100%" CELLPADDING="4" CELLSPACING="3">
-                <thead>
-                    <tr ALIGN="center">
-                        <th COLSPAN="100" WIDTH="50%" CELLPADDING="4" CELLSPACING="3">
-                            <br>
-                            <h1>To-do list</h1>
-                            <p>Date and Time for Today: <span id="datetime"></span></p>
-                        </th>
-                    </tr>
-                    <tr ALIGN="center ">
-                        <td ALIGN="left "><strong>Agenda</strong></td>
-                        <td><strong>Not Started</strong></td>
-                        <td><strong>In Progress</strong></td>
-                        <td><strong>Complete</strong></td>
-                    </tr>
-                    </thead>
-                    <tbody">
-                            {%for item in to_do%}
-                            <tr>
-                            <td>{{item.title}}</td>
-                            <td><input type="checkbox" id="" name="Tick" value=""></td>
-                            <td><input type="checkbox" id="" name="Tick" value=""></td>
-                            <td><input type="checkbox" id="" name="Tick" value=""></td>
-                            </tr>
-                            {%endfor%}
 
-                    </tbody>
-            </table>    
-            <br>
-            </br>
-            <ol class="list-group mb-4 ">
-                {%for item in to_do%}
-                <li>{{item.title}} -
-                    <form action="/newitem " method="post">
-                        <p><input hidden type=text name="id" value="{{item.id}}" /></p>
-                        <button type="submit " name="Done ">Mark as Complete!</button>
-                    </form>
-                </li>
-                {%endfor%}
-            </ol>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Task Master</h2>
+        <ol class="list-group mb-4">
+
+            <!-- setting the URL path for where the form is to be 'posted' to -->
+            <style>
+                .demo {
+                    border: 1px solid #C0C0C0;
+                    border-collapse: collapse;
+                    padding: 5px;
+                }
+                
+                .demo th {
+                    border: 1px solid #C0C0C0;
+                    padding: 5px;
+                    background: #F0F0F0;
+                }
+                
+                .demo td {
+                    border: 1px solid #C0C0C0;
+                    padding: 5px;
+                }
+            </style>
+            <table class="demo">
+                <caption>Add A Task</caption>
+               
+                <thead>
+                    <tr>
+                        <th>Agenda</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                    {% for item in to_do %}
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{item.title}}</td>
+                        <td>{{item.status}}</td>
+                        
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+            <!-- <table  BORDER= "1">
+        {% for item in to_do %}
+        <tbody>
+        <tr>
+    
+        <td>{{item.status}}</td>
+        </tr>
+        <tr>
+        <td> {{item.name}}</td>
+        
+        </tr>
+        </tbody>
+        {% endfor %}
+        </table> -->
+            <form action="/newitem" method="post">
+                <input type="text" name="title">
+                <input type="submit" value="submit">
+            </form>
     </div>
-    <form action="/newitem " method="post">
-        <p>Add a todo item</p>
-        <p><input type=text name="new_item_form" /></p>
-        <p><input type=submit value="Add Item" /></p>
-    </form>
-</div>
-<script>
-    var dt = new Date();
-    document.getElementById("datetime").innerHTML = dt.toLocaleString();
-    </script>
-{% endblock %}
+
+    {% endblock %}

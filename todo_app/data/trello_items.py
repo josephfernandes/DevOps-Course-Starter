@@ -23,7 +23,7 @@ def add_card(name):
         "token": token, 
         "idList": to_do, 
         "name" : name 
-        }
+    }
     return requests.post(reqUrl, data=parameters)
 
 def doing_card(id):
@@ -33,8 +33,7 @@ def doing_card(id):
         "token": token, 
         "idList": doing,
         "id": id
-
-        }
+    }
     return requests.put(reqUrl, data=parameters)
 
 def done_card(id):
@@ -44,8 +43,7 @@ def done_card(id):
         "token": token, 
         "idList": done,
         "id": id
-
-        }
+    }
     return requests.put(reqUrl, data=parameters)
 
 
