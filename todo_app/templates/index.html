@@ -1,29 +1,73 @@
-{% extends "layout.html" %}
-{% block title %}To-Do App{% endblock %}
-
-{% block content %}
-  <div class="jumbotron">
+{% extends "layout.html" %} {% block title %}To-Do App{% endblock %} {% block content %}
+<div class="jumbotron">
     <h1 class="display-4">To-Do App</h1>
     <p class="lead">Just another to-do app.</p>
-  </div>
+</div>
 
-  <div class="row">
+<div class="row">
     <div class="col-md-12">
-      <h2>Task Master</h2>
-      <ul class="list-group mb-4">
-        {% for item in get_items() %}
-        <li>{{item.title}}</li>
-         {% endfor %}
-          </div>
+
+        <h2>Task Master</h2>
+        <ol class="list-group mb-4">
+
+            <!-- setting the URL path for where the form is to be 'posted' to -->
+            <style>
+                .demo {
+                    border: 1px solid #C0C0C0;
+                    border-collapse: collapse;
+                    padding: 5px;
+                }
+                
+                .demo th {
+                    border: 1px solid #C0C0C0;
+                    padding: 5px;
+                    background: #F0F0F0;
+                }
+                
+                .demo td {
+                    border: 1px solid #C0C0C0;
+                    padding: 5px;
+                }
+            </style>
+            <table class="demo">
+                <caption>Add A Task</caption>
+               
+                <thead>
+                    <tr>
+                        <th>Agenda</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                    {% for item in to_do %}
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{item.title}}</td>
+                        <td>{{item.status}}</td>
+                        
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+            <!-- <table  BORDER= "1">
+        {% for item in to_do %}
+        <tbody>
+        <tr>
+    
+        <td>{{item.status}}</td>
+        </tr>
+        <tr>
+        <td> {{item.name}}</td>
         
-      </ul>
-      <!-- setting the URL path for where the form is to be 'posted' to -->
-      <form action= "/newitem" method= "post">
-        
-        <input type="text" name="title">
-        <input type="submit" value="submit"> 
-      </form>
+        </tr>
+        </tbody>
+        {% endfor %}
+        </table> -->
+            <form action="/newitem" method="post">
+                <input type="text" name="title">
+                <input type="submit" value="submit">
+            </form>
 
     </div>
-  </div>
-{% endblock %}
+
+    {% endblock %}
