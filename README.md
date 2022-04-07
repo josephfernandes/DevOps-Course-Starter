@@ -66,7 +66,7 @@ CMD ["poetry", "run", "flask","run","--host=0.0.0.0"] (development)
 
 docker run -t -p 5000:5000 --env-file .env todo-app:dev (production)
 
-DevOps-Course-Starter % docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/app/todo_app todo-app:dev
+ docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/app/todo_app todo-app:dev
 
 ```
 
