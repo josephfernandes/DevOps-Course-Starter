@@ -60,13 +60,15 @@ ansible-playbook my-ansible-playbook.yml -i inventory.txt
 ## Docker Module 5
 ```
 Command in the terminal to build the image
-docker build -t todo-app:dev .    
+docker build --target development --tag todo-app:dev .    
 
-CMD ["poetry", "run", "flask","run","--host=0.0.0.0"] (development)
-
-docker run -t -p 5000:5000 --env-file .env todo-app:dev (production)
-
+(Development Image)
  docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/app/todo_app todo-app:dev
 
+(Production Image )
+docker build --target production --tag todo-app:prod . 
+docker run --env-file ./.env -p 5000:5000 todo-app:prod
+
+misc:CMD ["poetry", "run", "flask","run","--host=0.0.0.0"] (to run on flask only )
 ```
 
