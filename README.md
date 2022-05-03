@@ -70,5 +70,6 @@ docker build --target production --tag todo-app:prod .
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
 
 misc:CMD ["poetry", "run", "flask","run","--host=0.0.0.0"] (to run on flask only )
+poetry add gunicorn        (to add gunicorn)                            
 ```
 
