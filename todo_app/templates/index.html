@@ -36,13 +36,18 @@
                     <tr>
                         <th>Agenda</th>
                         <th>Status</th>
-                        
+                        <th>Doing</th>
+                        <th>Done</th>
+                    
                     </tr>
                     {% for item in to_do %}
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{item.title}}</td>
+                        <td>{{item.status}}</td>
+                    
+                        <td>{{item.status}}</td>
                         <td>{{item.status}}</td>
                         
                     </tr>
