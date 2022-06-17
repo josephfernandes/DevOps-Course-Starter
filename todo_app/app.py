@@ -31,10 +31,18 @@ def home():
 
 @app.route('/newitem', methods= ["POST"])
 def new_item():
+  
+
     item = request.form["title"]
 
     add_card(item)
     return redirect(url_for("home"))
+
+ 
+    # item = request.form["title"]
+
+    # add_card(item)
+    # return redirect(url_for("home"))
 
 @app.route('/doingitem', methods= ["POST"])
 def to_doing_item():

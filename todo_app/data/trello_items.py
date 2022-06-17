@@ -27,7 +27,7 @@ def add_card(name):
     return requests.post(reqUrl, data=parameters)
 
 def doing_card(id):
-    reqUrl= "https://api.trello.com/1/cards"
+    reqUrl= f"https://api.trello.com/1/cards/{id}"
     parameters = { 
         "key": key, 
         "token": token, 
