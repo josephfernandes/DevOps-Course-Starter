@@ -1,78 +1,149 @@
 {% extends "layout.html" %} {% block title %}To-Do App{% endblock %} {% block content %}
-<div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-
-        <h2>Task Master</h2>
-        <ol class="list-group mb-4">
-
-            <!-- setting the URL path for where the form is to be 'posted' to -->
             <style>
+                *{
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.row {
+  margin-left:0px;
+  margin-right:-px;
+}
+  
+.column {
+  float: left;
+  padding: 5px;
+  margin:5px;
+  border-radius: 4px;
+  border: 10px solid #C0C0C0;
+
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
                 .demo {
                     border: 1px solid #C0C0C0;
                     border-collapse: collapse;
+                    border-spacing: 0;
                     padding: 5px;
+                    border-radius: 4px;
                 }
                 
-                .demo th {
+                /* .demo th {
                     border: 1px solid #C0C0C0;
                     padding: 5px;
                     background: #F0F0F0;
-                }
-                
+                } */
+/*                 
                 .demo td {
                     border: 1px solid #C0C0C0;
                     padding: 5px;
-                }
-            </style>
-            <table class="demo">
-                <caption>Add A Task</caption>
-               
-                <thead>
+                } */
+                .demo th, td {
+                   text-align: left;
+                    padding: 16px;
+                    border: 1px solid #C0C0C0;
+                    border-radius: 4px;
+                   
+}
+.form{ width: 32%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=text], select {
+  width: 32%;
+  padding: 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 20%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color:#4CAF50 ;
+}
+
+
+
+.container{min-width: fit-content}/* Responsive layout - makes the two columns stack on top of each other instead of next to each other on screens that are smaller than 600 px */
+@media screen and (min-width: fit-content) {
+  .column {
+    width: 100%;
+ 
+  }
+}
+    </style>
+</head>
+<body>
+    <h2>Trying To Make It Like Jira Project</h2>
+        <div class="row">
+            <div class="column">
+            <table >
+
                     <tr>
                         <th>Agenda</th>
                         <th>Status</th>
                         <th>Doing</th>
                         <th>Done</th>
-                    
+                        <th>Delete</th>
                     </tr>
                     {% for item in to_do %}
-                </thead>
-                <tbody>
                     <tr>
                         <td>{{item.title}}</td>
-                        <td>{{item.status}}</td>
-                    
-                        <td>{{item.status}}</td>
-                        <td>{{item.status}}</td>
-                        
+                        <td>{{item.status}};</td>
+                        <td>
+                            <form action="/doingitem " method="post">
+                                <input hidden type=text name="doing_item_form" value="{{item.id}}">
+                                <button type="submit " name="to_do">start</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form ALIGN="CENTER" action="/done_card " method="post">
+                                <input hidden type=text name="done_card_form" value="{{item.id}}" />
+                                <button type="submit " name="Done ">Done</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form ALIGN="CENTER" action="/delete_card" method="post">
+                                <input hidden type=text name="delete_card" value="{{item.id}}">
+                                <button type="submit" name="delete_card_form"> Delete Task</button>
+                            </form>
+                        </td>
                     </tr>
-                    {% endfor%}
-                </tbody>
+                    {% endfor %}
             </table>
-            <!-- <table  BORDER= "1">
-        {% for item in to_do %}
-        <tbody>
-        <tr>
-    
-        <td>{{item.status}}</td>
-        </tr>
-        <tr>
-        <td> {{item.name}}</td>
-        
-        </tr>
-        </tbody>
-        {% endfor %}
-        </table> -->
-            <form action="/newitem" method="post">
-                <input type="text" name="title">
-                <input type="submit" value="submit">
-            </form>
-
     </div>
+</div>
+          
+    <form action="/newitem" method="post">
+        <input type="text" name="title" placeholder="Add a task..">
+        <input type="submit" value="submit">
+    </form>
 
-    {% endblock %}
+   
+         
+
+</div>
+    {% endblock %} 
+   
+
+
