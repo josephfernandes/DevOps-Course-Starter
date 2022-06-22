@@ -113,19 +113,19 @@ input[type=submit]:hover {
                         <td>
                             <form action="/doingitem " method="post">
                                 <input hidden type=text name="doing_item_form" value="{{item.id}}">
-                                <button type="submit " name="inprogress ">start</button>
+                                <button type="submit " name="to_do">start</button>
                             </form>
                         </td>
                         <td>
-                            <form ALIGN="CENTER" action="/complete_item " method="post">
-                                <input hidden type=text name="id" value="{{item.id}}" />
+                            <form ALIGN="CENTER" action="/done_card " method="post">
+                                <input hidden type=text name="done_card_form" value="{{item.id}}" />
                                 <button type="submit " name="Done ">Done</button>
                             </form>
                         </td>
                         <td>
                             <form ALIGN="CENTER" action="/delete_card" method="post">
                                 <input hidden type=text name="delete_card" value="{{item.id}}">
-                                <button type="submit" name="deleting_card_form"> Delete Task</button>
+                                <button type="submit" name="delete_card_form"> Delete Task</button>
                             </form>
                         </td>
                     </tr>
