@@ -56,11 +56,11 @@ def done_card(id):
 
 
 def delete_card(id):
-    reqUrl= f"https://api.trello.com/1/cards{id}"
+    reqUrl= f"https://api.trello.com/1/cards/{id}"
     parameters = { 
         "key": key, 
         "token": token,
         
     }
-    return requests.request("DELETE", reqUrl, data=parameters)
+    return requests.request("DELETE", reqUrl, data=parameters).raise_for_status()
 

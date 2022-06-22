@@ -3,7 +3,7 @@ from flask.helpers import url_for
 from werkzeug.utils import redirect
 
 from todo_app.data.classes import to_do_item
-from todo_app.data.trello_items import  show_cards, add_card, doing_card, done_card
+from todo_app.data.trello_items import  show_cards, add_card, doing_card, done_card, delete_card
  
 
 from todo_app.flask_config import Config
@@ -51,8 +51,8 @@ def complete_item():
     return redirect(url_for("home"))
 
 @app.route('/delete_card', methods=["POST"])
-def delete_card():
-    item = request.form["delete_card_form"]
+def delete_item():
+    item = request.form["delete_card"]
     delete_card(item)
     return redirect(url_for("home"))
     
