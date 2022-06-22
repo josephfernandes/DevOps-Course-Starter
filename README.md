@@ -41,9 +41,9 @@ SECRET_KEY=secret-key # leave this as it is
 API_KEY = 'abc'
 API_TOKEN = 'def'
 BOARD = 'ghi'
-NOTSTARTED_LIST = 'klm'
-INPROGRESS_LIST = 'nop'
-COMPLETED_LIST =  'qrs'
+TO_DO= 'klm'
+DOING= 'nop'
+Done=  'qrs'
 ```
 
 ## Running the App
