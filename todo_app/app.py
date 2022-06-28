@@ -7,6 +7,7 @@ from todo_app.data.trello_items import  show_cards, add_card, doing_card, done_c
  
 
 from todo_app.flask_config import Config
+from todo_app.data.viewmodel import ViewModel
 
 
 
@@ -25,7 +26,9 @@ def home():
       status=list['name']
       item=to_do_item(id, title, status)
       to_do.append(item)
-  return render_template('index.html', to_do=to_do)
+  item_view_model = ViewModel(to_do)
+  return render_template('index.html', to_do=to_do, view_model=item_view_model)
+  
 
    
 
