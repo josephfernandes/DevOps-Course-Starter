@@ -9,7 +9,8 @@ on:
     paths-ignore:
         - '**.md'
  
-jobs: build:
+jobs: 
+  build:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
