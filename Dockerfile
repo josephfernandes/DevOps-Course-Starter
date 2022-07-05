@@ -24,7 +24,7 @@ FROM base as production
 CMD ["poetry", "run","gunicorn", "todo_app.app:app", "-b", "0.0.0.0:5000"]
 
 FROM base as test
-ENV PATH="${PATH}:/root/todo_app"
+
 
 CMD ["poetry", "run", "pytest"]
 
