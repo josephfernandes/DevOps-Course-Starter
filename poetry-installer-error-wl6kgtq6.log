@@ -1,0 +1,8 @@
+dyld[21589]: Library not loaded: @executable_path/../Python3
+  Referenced from: /Users/jfernandes7/Library/Application Support/pypoetry/venv/bin/python3
+  Reason: tried: '/Users/jfernandes7/Library/Application Support/pypoetry/venv/bin/../Python3' (no such file), '/usr/local/lib/Python3' (no such file), '/usr/lib/Python3' (no such file)
+
+Traceback:
+
+  File "<stdin>", line 876, in main
+  File "<stdin>", line 509, in run

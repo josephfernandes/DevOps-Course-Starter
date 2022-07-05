@@ -11,15 +11,25 @@ WORKDIR /app
 
 RUN poetry install
 
-EXPOSE 5000
+
+
+
 
 FROM base as development 
-
+EXPOSE 4000
 
 CMD ["poetry", "run", "flask","run","--host=0.0.0.0"]
 
 FROM base as production
 CMD ["poetry", "run","gunicorn", "todo_app.app:app", "-b", "0.0.0.0:5000"]
+
+FROM base as test
+ENV PATH="${PATH}:/root/todo_app"
+
+CMD ["poetry", "run", "pytest"]
+
+
+
 
 
 

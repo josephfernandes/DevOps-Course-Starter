@@ -78,10 +78,26 @@ docker build --target development --tag todo-app:dev .
 
 (Development Image)
  docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/app/todo_app todo-app:dev
+or    docker build --target development --tag todo-app:dev .
 
 (Production Image )
 docker build --target production --tag todo-app:prod . 
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
+or  docker build --target production t --tag todo-app:dev .
+
+(Test Image )
+docker build --target test --tag todo-app:test . 
+docker run --env-file ./.env -p 5000:5000 todo-app:test
+
+
+
+(Docker-Compose Commands)
+
+docker-compose up --build 
+
+docker-compose up todo-dev
+docker-compose up todo-prod
+docker-compose up todo-test
 
 misc:CMD ["poetry", "run", "flask","run","--host=0.0.0.0"] (to run on flask only )
 poetry add gunicorn        (to add gunicorn)                            
