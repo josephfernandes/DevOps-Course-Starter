@@ -87,9 +87,9 @@ or  docker build --target production t --tag todo-app:dev .
 
 (Test Image )
 docker build --target test --tag todo-app:test . 
-docker run --env-file ./.env -p 5000:5000 todo-app:test
+docker run todo-app:test
 
-
+[comment for me: ports on dockercompose file, the right one is for local machine and left is of the container. in order for the app to run Expose port should be same as the right. eg 80:4000  left for locahost and to run in the browser it should be localhost:80]
 
 (Docker-Compose Commands)
 
