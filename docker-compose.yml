@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+     todo-dev: 
+        build:
+          dockerfile:  Dockerfile
+          context: .
+          target: development
+        env_file:
+        - ./.env
+        volumes:
+        - ./todo_app:/app/todo_app
+        ports:
+        - 4000:5000
+
+     todo-prod:
+        build:
+           dockerfile:  Dockerfile
+           context: .
+           target: production
+        env_file:
+            - ./.env
+        ports:
+            - "80:5000"
+        volumes:
+            - ./todo_app:/app/todo_app
+        environment: 
+            PORT: 5000
+            FLASK_DEBUG: 1 
+
+     todo-test:
+        container_name: test
+        build:
+            dockerfile:  Dockerfile
+            context: .
+            target: test
+        volumes:
+           - type: bind
+             source: ./todo_app
+             target: /opt/todo_app
+          
+         

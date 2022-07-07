@@ -35,16 +35,7 @@
                     border-radius: 4px;
                 }
                 
-                /* .demo th {
-                    border: 1px solid #C0C0C0;
-                    padding: 5px;
-                    background: #F0F0F0;
-                } */
-/*                 
-                .demo td {
-                    border: 1px solid #C0C0C0;
-                    padding: 5px;
-                } */
+                
                 .demo th, td {
                    text-align: left;
                     padding: 16px;
@@ -106,10 +97,11 @@ input[type=submit]:hover {
                         <th>Done</th>
                         <th>Delete</th>
                     </tr>
-                    {% for item in to_do %}
+                  
+                    {% for item in view_model.todo_items %}
                     <tr>
                         <td>{{item.title}}</td>
-                        <td>{{item.status}};</td>
+                        <td>{{item.status}}</td>
                         <td>
                             <form action="/doingitem " method="post">
                                 <input hidden type=text name="doing_item_form" value="{{item.id}}">
@@ -143,7 +135,7 @@ input[type=submit]:hover {
          
 
 </div>
-    {% endblock %} 
+{% endblock %} 
    
-
+<!--ignore -->
 
