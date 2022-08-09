@@ -3,7 +3,8 @@ from flask.helpers import url_for
 from werkzeug.utils import redirect
 
 from todo_app.data.classes import to_do_item
-from todo_app.data.trello_items import  show_cards, add_card, doing_card, done_card, delete_card
+from todo_app.data.trello_items import  show_cards, doing_card, done_card, delete_card
+from todo_app.data.mongodb import   add_card
  
 
 from todo_app.flask_config import Config
