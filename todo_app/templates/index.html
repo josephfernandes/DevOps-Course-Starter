@@ -122,6 +122,55 @@ input[type=submit]:hover {
                         </td>
                     </tr>
                     {% endfor %}
+                    {% for item in view_model.doing_items %}
+                    <tr>
+                        <td>{{item.title}}</td>
+                        <td>{{item.status}}</td>
+                        <td>
+                            <form action="/doingitem " method="post">
+                                <input hidden type=text name="doing_item_form" value="{{item.id}}">
+                                <button type="submit " name="to_do">start</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form ALIGN="CENTER" action="/done_card " method="post">
+                                <input hidden type=text name="done_card_form" value="{{item.id}}" />
+                                <button type="submit " name="Done ">Done</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form ALIGN="CENTER" action="/delete_card" method="post">
+                                <input hidden type=text name="delete_card" value="{{item.id}}">
+                                <button type="submit" name="delete_card_form"> Delete Task</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% for item in view_model.done_items %}
+                    <tr>
+                        <td>{{item.title}}</td>
+                        <td>{{item.status}}</td>
+                        <td>
+                            <form action="/doingitem " method="post">
+                                <input hidden type=text name="doing_item_form" value="{{item.id}}">
+                                <button type="submit " name="to_do">start</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form ALIGN="CENTER" action="/done_card " method="post">
+                                <input hidden type=text name="done_card_form" value="{{item.id}}" />
+                                <button type="submit " name="Done ">Done</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form ALIGN="CENTER" action="/delete_card" method="post">
+                                <input hidden type=text name="delete_card" value="{{item.id}}">
+                                <button type="submit" name="delete_card_form"> Delete Task</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
             </table>
     </div>
 </div>
@@ -137,5 +186,5 @@ input[type=submit]:hover {
 </div>
 {% endblock %} 
    
-<!--ignore -->
+
 
