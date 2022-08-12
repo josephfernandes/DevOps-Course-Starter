@@ -3,8 +3,8 @@ from flask.helpers import url_for
 from werkzeug.utils import redirect
 
 from todo_app.data.classes import to_do_item
-from todo_app.data.trello_items import  show_cards, doing_card, done_card, delete_card
-from todo_app.data.mongodb import   add_card
+from todo_app.data.trello_items import   delete_card
+from todo_app.data.mongodb import show_cards, add_card, doing_card, done_card, delete_card
  
 
 from todo_app.flask_config import Config
@@ -17,28 +17,13 @@ app.config.from_object(Config())
 
 @app.route('/' )
 def home():
-
-  trello_list = show_cards()
-  to_do = []
-  for list  in trello_list:
-    for card in list ['cards']:
-      id=card ['id']
-      title=card['name']
-      status=list['name']
-      item=to_do_item(id, title, status)
-      to_do.append(item)
-  item_view_model = ViewModel(to_do)
+  to_do=show_cards()
+  item_view_model = ViewModel(items=to_do)
   return render_template('index.html', to_do=to_do, view_model=item_view_model)
-  
-
-   
 
 @app.route('/newitem', methods= ["POST"])
 def new_item():
-  
-
     item = request.form["title"]
-
     add_card(item)
     return redirect(url_for("home"))
 
