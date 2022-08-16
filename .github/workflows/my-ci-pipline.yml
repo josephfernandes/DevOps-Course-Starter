@@ -17,3 +17,7 @@ jobs:
     - uses: actions/checkout@v2
     - run: docker build --target test --tag todo-app:test . 
     - run: docker run todo-app:test   
+
+#I have not dont the module 8 yet. I need to use the curl command in future 
+ #final step 
+#curl -dH -X POST ${{secrets.WEBHOOK_URL}}

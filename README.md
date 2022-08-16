@@ -95,6 +95,7 @@ docker run todo-app:test
 
 docker-compose up --build 
 
+
 docker-compose up todo-dev
 docker-compose up todo-prod
 docker-compose up todo-test
@@ -103,3 +104,9 @@ misc:CMD ["poetry", "run", "flask","run","--host=0.0.0.0"] (to run on flask only
 poetry add gunicorn        (to add gunicorn)                            
 ```
 
+az cosmosdb keys list -n jo-fernandes -g
+KPMG21_JosephFernandes_ProjectExercise --type connection-strings
+
+az appservice plan create --resource-group KPMG21_JosephFernandes_ProjectExercise -n jo-plan --sku B1 --is-linux
+
+az webapp create --resource-group  --KPMG21_JosephFernandes_ProjectExercise --plan jo-plan --name jo-todo-app --deployment-container-image-name josephfernandes14/todoapp:latest
