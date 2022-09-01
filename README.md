@@ -110,3 +110,11 @@ KPMG21_JosephFernandes_ProjectExercise --type connection-strings
 az appservice plan create --resource-group KPMG21_JosephFernandes_ProjectExercise -n jo-plan --sku B1 --is-linux
 
 az webapp create --resource-group  --KPMG21_JosephFernandes_ProjectExercise --plan jo-plan --name jo-todo-app --deployment-container-image-name josephfernandes14/todoapp:latest
+
+new environment variables 
+
+CONNECTION_STRING=
+DATABASE=
+COLLECTION=
+PRIMARYKEY=
+

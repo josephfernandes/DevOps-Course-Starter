@@ -19,8 +19,7 @@ def show_cards():
     
 def add_card(name):
     key = os.environ.get('CONNECTION_STRING')
-    print(key)
-  
+    
     card = { 
         "status": "To-Do", 
         "title": name
