@@ -47,13 +47,9 @@ jobs:
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/todoapp:buildcache,mode=max
 
     - name: Deploying to Azure
-      uses: 
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "todo-app-apprenticeship"
-        heroku_email: ${{ secrets.HEROKU_USERNAME }}
-        usedocker: true  
-
+      run: curl -dH -X POST ${{secrets.WEBHOOK_URL}}
+      
+       
 
 #I have not dont the module 8 yet. I need to use the curl command in future 
  #final step 
