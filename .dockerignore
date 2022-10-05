@@ -4,10 +4,3 @@
 
 .vscode
 Ansible 
-
-### Terraform ###
-.azure/
-.terraform/
-*.tfstate
-*terraform.*
-*.tfstate.*
