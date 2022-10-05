@@ -1,13 +1,13 @@
 import pytest
-from todo_app.data.classes import to_do_item
+from todo_app.data.to_do_item import ToDoItem
 from todo_app.data.viewmodel import ViewModel
 
 
 def test_todo_items():
     items = [
-        to_do_item(1, "new item", "To-Do"),
-        to_do_item(2, "in progress item", "Doing"),
-        to_do_item(3, "done item", "Done"),
+        ToDoItem(1, "new item", "To-Do"),
+        ToDoItem(2, "in progress item", "Doing"),
+        ToDoItem(3, "done item", "Done"),
     ]
     viewmodel = ViewModel(items)
     todo_items = viewmodel.todo_items
