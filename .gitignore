@@ -119,4 +119,3 @@ env/
 ### Configuration files ###
 .env
 test_env
-

@@ -1,4 +1,4 @@
-from todo_app.data.to_do_item import ToDoItem
+from todo_app.data.classes import to_do_item
 from pymongo import MongoClient
 from bson import ObjectId 
 import os
@@ -14,7 +14,7 @@ todos = db.todo_tasks
 def show_cards():
     tasks=[]
     for task in todos.find():
-        tasks.append(ToDoItem(id=task["_id"], title=task["title"], status=task["status"]))
+        tasks.append(to_do_item(id=task["_id"], title=task["title"], status=task["status"]))
     return tasks
     
 def add_card(name):

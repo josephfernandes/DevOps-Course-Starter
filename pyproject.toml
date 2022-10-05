@@ -12,7 +12,6 @@ requests = "^2.27.1"
 gunicorn = "^20.1.0"
 pytest = "^7.1.2"
 pymongo = "^4.2.0"
-Flask-Login = "^0.6.2"
 
 [tool.poetry.dev-dependencies]
 
