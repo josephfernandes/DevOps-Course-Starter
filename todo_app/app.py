@@ -1,7 +1,9 @@
 from flask import Flask , render_template, request
 from flask.helpers import url_for
 from werkzeug.utils import redirect
-from flask_login import LoginManager
+from flask_login import LoginManager, login_required
+import os, requests
+
 
 from todo_app.data.classes import to_do_item
 from todo_app.data.mongodb import show_cards, add_card, doing_card, done_card, delete_card
@@ -10,20 +12,38 @@ from todo_app.data.mongodb import show_cards, add_card, doing_card, done_card, d
 from todo_app.flask_config import Config
 from todo_app.data.viewmodel import ViewModel
 
+client_id='CLIENTID'
+client_secret='CLIENTSECRET'
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config())
     login_manager = LoginManager()
+
     @login_manager.unauthorized_handler
     def unauthenticated():
-        pass # Add logic to redirect to the GitHub OAuth flow when unauthenticated
+       return redirect ('https://github.com/login/oauth/authorize?client_id='+ os.getenv(client_id)) 
+     
     
     @login_manager.user_loader
     def load_user(user_id):
         pass # We will return to this later
     login_manager.init_app(app)
     
+    @app.route('/login/callback')
+    def login():
+        code= request.args.get('code')
+        access_token_url = 'https://github.com/login/oauth/access_token'
+        payload = {
+            'client_id': os.getenv(client_id),
+            'client_secret': os.getenv(client_secret),
+            'code': code,
+        } 
+        r = requests.post(access_token_url, json=payload, headers={'Accept': 'application/json'})
+        access_token = r.json().get('access_token')
+        print(access_token)
+        return 'ok'
+
 
     @app.route('/')
     @login_required
@@ -67,3 +87,4 @@ if __name__ == "__main__":
         
  
 
+# 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
