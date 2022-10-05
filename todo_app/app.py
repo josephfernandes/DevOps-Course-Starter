@@ -1,12 +1,13 @@
 from flask import Flask , render_template, request
 from flask.helpers import url_for
 from werkzeug.utils import redirect
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager, login_required, login_user
 import os, requests
 
 
-from todo_app.data.classes import to_do_item
+from todo_app.data.to_do_item import ToDoItem
 from todo_app.data.mongodb import show_cards, add_card, doing_card, done_card, delete_card
+from todo_app.data.user import User
  
 
 from todo_app.flask_config import Config
@@ -27,6 +28,7 @@ def create_app():
     
     @login_manager.user_loader
     def load_user(user_id):
+        print(user_id)
         pass # We will return to this later
     login_manager.init_app(app)
     
@@ -42,7 +44,23 @@ def create_app():
         r = requests.post(access_token_url, json=payload, headers={'Accept': 'application/json'})
         access_token = r.json().get('access_token')
         print(access_token)
-        return 'ok'
+        reqUrl = "https://api.github.com/user"
+
+        headersList = {
+        "Accept": "*/*",
+        "Authorization": f"Bearer {access_token}" 
+        }
+
+        response = requests.get(reqUrl, headers=headersList)
+
+        response_json = response.json()
+
+        print(response_json)
+
+        user = User(response_json['id'])
+
+        login_user(user)
+        return redirect('/')
 
 
     @app.route('/')
@@ -82,9 +100,7 @@ def create_app():
 
     return app
 
-if __name__ == "__main__":
-    create_app(create_app).run()
+
         
  
 
-# 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
