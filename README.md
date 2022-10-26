@@ -118,3 +118,4 @@ DATABASE=
 COLLECTION=
 PRIMARYKEY=
 
+Now the infrastructure is deployed via terraform.
