@@ -8,11 +8,23 @@ from todo_app.data.mongodb import show_cards, add_card, doing_card, done_card, d
 
 from todo_app.flask_config import Config
 from todo_app.data.viewmodel import ViewModel
+import logging
 
+from loggly.handlers import HTTPSHandler
+from logging import Formatter
 
 
 app = Flask(__name__)
 app.config.from_object(Config())
+if app.config['LOGGLY_TOKEN'] is not None:
+    handler = HTTPSHandler(f'https://logs-01.loggly.com/inputs/{app.config["LOGGLY_TOKEN"]}/tag/todo-app')
+    handler.setFormatter(Formatter("[%(asctime)s] %(levelname)s in %(module)s: %(message)s")
+    )
+    app.logger.addHandler(handler)
+app.logger.info('This a debug message')
+logging.warning('This an info message')
+logging.error('This an error message')
+logging.critical('This a criticl message')
 
 @app.route('/' )
 def home():
